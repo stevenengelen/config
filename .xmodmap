@@ -1,0 +1,8 @@
+keycode 0x6c = Mode_switch
+keysym e = e E eacute
+keysym r = r R egrave
+keysym c = c C ccedilla
+keysym a = a A agrave
+keysym u = u U ugrave
+keysym 6 = 6 asciicircum dead_circumflex
+keysym apostrophe = apostrophe quotedbl dead_diaeresis
