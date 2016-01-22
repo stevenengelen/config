@@ -70,3 +70,9 @@ if has('gui_running')
   map <S-Insert> <MiddleMouse>
   map! <S-Insert> <MiddleMouse>
 endif
+" python related settings
+set shiftwidth=4 			" >> << indents 4 columns
+set tabstop=4				" hard tab is 4 columns
+set expandtab				" convert tabs to spaces
+set softtabstop=4           " and insert/delete 4 spaces when hitting a TAB/BACKSPACE
+set shiftround              " round indent to multiple of 'shiftwidth'
