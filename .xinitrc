@@ -20,5 +20,5 @@ xrdb ~/.Xresources
 xset b off
 /usr/bin/xmodmap ~/.xmodmap
 dropbox &
-syndaemon -t -k -i 2 -d &
+# syndaemon -k -d &
 exec i3
