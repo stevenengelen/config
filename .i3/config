@@ -21,11 +21,13 @@ exec --no-startup-id sh ~/.fehbg
 floating_modifier $mod
 
 # FN key combinations for ux21a
+# Use the "xev" program to find out which key corresponds to which code.
 bindcode 237 exec sudo asus-kbd-backlight down
 bindcode 238 exec sudo asus-kbd-backlight up
 bindcode 123 exec "amixer sset Master,0 1+"
 bindcode 122 exec "amixer sset Master,0 1-"
 bindcode 121 exec "amixer sset Master,0 toggle"
+bindcode 199 exec "sh /home/steven/scripts/touchpad_toggle.sh"
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -40,7 +42,7 @@ bindsym $mod+Shift+Q kill
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 
-# change focus
+# change focuse
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up

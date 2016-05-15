@@ -57,7 +57,7 @@ set number
 
 "word wrap at the end of a line
 set wrap
-set wm=1
+"set wm=1
 
 "Remap window moving
 map <c-j> <c-w>j
