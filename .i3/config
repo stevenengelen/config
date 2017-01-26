@@ -30,7 +30,8 @@ bindcode 121 exec "amixer sset Master,0 toggle"
 bindcode 199 exec "sh /home/steven/scripts/touchpad_toggle.sh"
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec xterm
 for_window[class="XTerm"] border none
 # for_window[class="XTerm"] border 1pixel
 bindsym $mod+i exec firefox

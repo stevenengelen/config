@@ -2,6 +2,9 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" allows us to paste stuff from outside vim in vim
+set clipboard=unnamed
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -65,16 +68,24 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+" decide where the new window will come
+set splitbelow
+set splitright
+
 if has('gui_running')
   " Make shift-insert work like in Xterm
   map <S-Insert> <MiddleMouse>
   map! <S-Insert> <MiddleMouse>
 endif
 " python related settings
-set shiftwidth=4 			" >> << indents 4 columns
-set tabstop=4				" hard tab is 4 columns
-set expandtab				" convert tabs to spaces
-set softtabstop=4           " and insert/delete 4 spaces when hitting a TAB/BACKSPACE
-set shiftround              " round indent to multiple of 'shiftwidth'
+au BufNewFile,BufRead *.py
+    \ set shiftwidth=4 			" >> << indents 4 columns
+    \ set tabstop=4				" hard tab is 4 columns
+    \ set expandtab				" convert tabs to spaces
+    \ set softtabstop=4           " and insert/delete 4 spaces when hitting a TAB/BACKSPACE
+    \ set shiftround              " round indent to multiple of 'shiftwidth'
+    \ set foldmethod=indent       " enable folding
+    \ set foldlevel=99
+    \ nnorempa <space> za         " enable folding with the spacebar
 " enable pathogen
 execute pathogen#infect()
