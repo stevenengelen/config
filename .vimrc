@@ -2,8 +2,57 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+filetype off		" required by vundle
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'tmhedberg/SimpylFold'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 " allows us to paste stuff from outside vim in vim
 set clipboard=unnamed
+
+" set mapleader
+let mapleader="\\"
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -25,13 +74,6 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
@@ -77,15 +119,14 @@ if has('gui_running')
   map <S-Insert> <MiddleMouse>
   map! <S-Insert> <MiddleMouse>
 endif
+
+" Toggle NERDTree on/off, with NERDTree in each tab, not just the active tab
+map <Leader>t <plug>NERDTreeTabsToggle<CR>
+
 " python related settings
-au BufNewFile,BufRead *.py
-    \ set shiftwidth=4 			" >> << indents 4 columns
-    \ set tabstop=4				" hard tab is 4 columns
-    \ set expandtab				" convert tabs to spaces
-    \ set softtabstop=4           " and insert/delete 4 spaces when hitting a TAB/BACKSPACE
-    \ set shiftround              " round indent to multiple of 'shiftwidth'
-    \ set foldmethod=indent       " enable folding
-    \ set foldlevel=99
-    \ nnorempa <space> za         " enable folding with the spacebar
-" enable pathogen
-execute pathogen#infect()
+autocmd FileType py set shiftwidth=4	" >> << indents 4 columns
+autocmd FileType py set tabstop=4		" hard tab is 4 columns
+autocmd FileType py set expandtab		" convert tabs to spaces
+autocmd FileType py set softtabstop=4      	" and insert/delete 4 spaces when hitting a TAB/BACKSPACE
+autocmd FileType py set shiftround          " round indent to multiple of 'shiftwidth'
+autocmd FileType py let g:SimpylFold_docstring_preview = 1	" preview docstrings
