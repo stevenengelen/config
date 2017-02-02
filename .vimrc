@@ -124,9 +124,9 @@ endif
 map <Leader>t <plug>NERDTreeTabsToggle<CR>
 
 " python related settings
-autocmd FileType py set shiftwidth=4	" >> << indents 4 columns
-autocmd FileType py set tabstop=4		" hard tab is 4 columns
-autocmd FileType py set expandtab		" convert tabs to spaces
-autocmd FileType py set softtabstop=4      	" and insert/delete 4 spaces when hitting a TAB/BACKSPACE
-autocmd FileType py set shiftround          " round indent to multiple of 'shiftwidth'
-autocmd FileType py let g:SimpylFold_docstring_preview = 1	" preview docstrings
+autocmd FileType python set shiftwidth=4	" >> << indents 4 columns
+autocmd FileType python set tabstop=4		" hard tab is 4 columns
+autocmd FileType python set expandtab		" convert tabs to spaces
+autocmd FileType python set softtabstop=4      	" and insert/delete 4 spaces when hitting a TAB/BACKSPACE
+autocmd FileType python set shiftround          " round indent to multiple of 'shiftwidth'
+autocmd BufReadPre *.py let g:SimpylFold_docstring_preview = 1	" preview docstrings
