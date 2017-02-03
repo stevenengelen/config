@@ -88,21 +88,16 @@ if has("autocmd")
     \ if line("'\"") >= 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
-
   augroup END
 
 else
-
   set autoindent		" always set autoindenting on
-
 endif " has("autocmd")
-
 
 set number
 
 "word wrap at the end of a line
 set wrap
-"set wm=1
 
 "Remap window moving
 map <c-j> <c-w>j
@@ -124,9 +119,16 @@ endif
 map <Leader>t <plug>NERDTreeTabsToggle<CR>
 
 " python related settings
-autocmd FileType python set shiftwidth=4	" >> << indents 4 columns
-autocmd FileType python set tabstop=4		" hard tab is 4 columns
-autocmd FileType python set expandtab		" convert tabs to spaces
-autocmd FileType python set softtabstop=4      	" and insert/delete 4 spaces when hitting a TAB/BACKSPACE
-autocmd FileType python set shiftround          " round indent to multiple of 'shiftwidth'
+autocmd FileType python 
+  \ set tabstop=4               			  " hard tab is 4 columns
+  \ set shiftwidth=4            			  " >> << indents 4 columns
+  \ set expandtab					  " convert tabs to spaces
+  \ set softtabstop=4	         			  " and insert/delete 4 spaces when hitting a TAB/BACKSPACE
+  \ set shiftround   					  " round indent to multiple of 'shiftwidth'
 autocmd BufReadPre *.py let g:SimpylFold_docstring_preview = 1	" preview docstrings
+
+" javascript, html and css related settings
+autocmd FileType javascript,htmldjango,html,css
+  \ set tabstop=2     |
+  \ set softtabstop=2 |
+  \ set shiftwidth=2     
