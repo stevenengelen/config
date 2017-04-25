@@ -1,0 +1,18 @@
+# this file needs to be in /etc/systemd/system/
+# it needs to be enables using sudo systemctl enable /etc/systemd/system/autoupdate.timer
+# see https://www.techrapid.co.uk/2017/04/automatically-update-arch-linux-with-systemd.html
+
+[Unit]
+ Description=Automatic Update Pacman
+ Wants=network-online.target
+ After=network.target network-online.target
+
+[Service]
+ Type=simple
+ ExecStart=/usr/bin/pacman -Syuq --noconfirm
+ TimeoutStopSec=180
+ StandardOutput=tty
+
+[Install]
+ WantedBy=multi-user.target
+
