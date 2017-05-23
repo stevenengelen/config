@@ -32,6 +32,14 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tmhedberg/SimpylFold'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'				" syntax checking python
+Plugin 'nvie/vim-flake8'					" PEP8 checking
+Plugin 'jnurmine/Zenburn'					" color scheme for terminal
+Plugin 'altercation/vim-colors-solarized'	" color scheme for GUI
+Plugin 'kien/ctrlp.vim'						" super searching
+Plugin 'tpope/vim-fugitive'					" git integration
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}	" powerline
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -51,6 +59,8 @@ filetype plugin indent on    " required
 " allows us to paste stuff from outside vim in vim
 set clipboard=unnamed
 
+set encoding=utf-8
+
 " set mapleader
 let mapleader="\\"
 
@@ -69,8 +79,9 @@ endif
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
+	let python_highlight_all=1		
+  	syntax on
+  	set hlsearch
 endif
 
 if has("autocmd")
@@ -110,10 +121,16 @@ set splitbelow
 set splitright
 
 if has('gui_running')
-  " Make shift-insert work like in Xterm
-  map <S-Insert> <MiddleMouse>
-  map! <S-Insert> <MiddleMouse>
+  	" Make shift-insert work like in Xterm
+  	map <S-Insert> <MiddleMouse>
+  	map! <S-Insert> <MiddleMouse>
+	set background=dark
+	colorscheme solarized
+else
+    colorscheme zenburn
 endif
+
+call togglebg#map("<F5>") " toggles between light and dark theme
 
 " Toggle NERDTree on/off, with NERDTree in each tab, not just the active tab
 map <Leader>t <plug>NERDTreeTabsToggle<CR>
@@ -126,6 +143,24 @@ autocmd FileType python
   \ set softtabstop=4	         			  " and insert/delete 4 spaces when hitting a TAB/BACKSPACE
   \ set shiftround   					  " round indent to multiple of 'shiftwidth'
 autocmd BufReadPre *.py let g:SimpylFold_docstring_preview = 1	" preview docstrings
+" Define the highlight group
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+" autocomplete YouCompleteMe closes window after completion
+let g:ycm_autoclose_preview_window_after_completion=1
+" leader g opens GoTo dialog YouCompleteMe
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " javascript, html and css related settings
 autocmd FileType javascript,htmldjango,html,css

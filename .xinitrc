@@ -16,7 +16,7 @@ fi
 # exec startxfce4
 # ...or the Window Manager of your choice
 # [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-xrdb ~/.Xresources
+xrdb -merge ~/.Xresources
 xset b off
 /usr/bin/xmodmap ~/.xmodmap
 dropbox &

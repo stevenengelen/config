@@ -7,6 +7,6 @@
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
-set -o vi
+set editing-mode vi
 set show-mode-in-prompt On
 complete -cf sudo
