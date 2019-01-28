@@ -32,13 +32,13 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'				" syntax checking python
-Plugin 'nvie/vim-flake8'					" PEP8 checking
-Plugin 'jnurmine/Zenburn'					" color scheme for terminal
+" Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'							" syntax checking python
+Plugin 'nvie/vim-flake8'									" PEP8 checking
+Plugin 'jnurmine/Zenburn'									" color scheme for terminal
 Plugin 'altercation/vim-colors-solarized'	" color scheme for GUI
-Plugin 'kien/ctrlp.vim'						" super searching
-Plugin 'tpope/vim-fugitive'					" git integration
+Plugin 'kien/ctrlp.vim'										" super searching
+Plugin 'tpope/vim-fugitive'								" git integration
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}	" powerline
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -80,8 +80,8 @@ endif
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
 	let python_highlight_all=1		
-  	syntax on
-  	set hlsearch
+	syntax on
+	set hlsearch
 endif
 
 if has("autocmd")
@@ -121,13 +121,13 @@ set splitbelow
 set splitright
 
 if has('gui_running')
-  	" Make shift-insert work like in Xterm
-  	map <S-Insert> <MiddleMouse>
-  	map! <S-Insert> <MiddleMouse>
+	" Make shift-insert work like in Xterm
+	map <S-Insert> <MiddleMouse>
+	map! <S-Insert> <MiddleMouse>
 	set background=dark
 	colorscheme solarized
 else
-    colorscheme zenburn
+	colorscheme zenburn
 endif
 
 call togglebg#map("<F5>") " toggles between light and dark theme
@@ -137,11 +137,11 @@ map <Leader>t <plug>NERDTreeTabsToggle<CR>
 
 " python related settings
 autocmd FileType python 
-  \ set tabstop=4               			  " hard tab is 4 columns
-  \ set shiftwidth=4            			  " >> << indents 4 columns
+  \ set tabstop=4           " hard tab is 4 columns
+  \ set shiftwidth=4        " >> << indents 4 columns
   \ set expandtab					  " convert tabs to spaces
-  \ set softtabstop=4	         			  " and insert/delete 4 spaces when hitting a TAB/BACKSPACE
-  \ set shiftround   					  " round indent to multiple of 'shiftwidth'
+  \ set softtabstop=4	      " and insert/delete 4 spaces when hitting a TAB/BACKSPACE
+  \ set shiftround   				" round indent to multiple of 'shiftwidth'
 autocmd BufReadPre *.py let g:SimpylFold_docstring_preview = 1	" preview docstrings
 " Define the highlight group
 highlight BadWhitespace ctermbg=red guibg=darkred
