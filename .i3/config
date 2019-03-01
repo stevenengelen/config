@@ -34,7 +34,7 @@ bindcode 199 exec "sh /home/steven/scripts/touchpad_toggle.sh"
 bindsym $mod+Return exec xterm
 for_window[class="XTerm"] border none
 # for_window[class="XTerm"] border 1pixel
-bindsym $mod+i exec chromium
+bindsym $mod+i exec firefox
 assign [class="Firefox"] 2
 
 # kill focused window

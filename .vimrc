@@ -1,3 +1,4 @@
+" runtime! debian.vim
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -32,7 +33,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tmhedberg/SimpylFold'
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'							" syntax checking python
 Plugin 'nvie/vim-flake8'									" PEP8 checking
 Plugin 'jnurmine/Zenburn'									" color scheme for terminal
@@ -148,13 +149,14 @@ highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 "python with virtualenv support
-py << EOF
+py3 << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
   project_base_dir = os.environ['VIRTUAL_ENV']
   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
+  # execfile(activate_this, dict(__file__=activate_this))
+  exec(open(activate_this).read(), dict(__file__=activate_this))
 EOF
 
 " autocomplete YouCompleteMe closes window after completion
