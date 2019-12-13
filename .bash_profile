@@ -3,5 +3,5 @@
 #
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-sudo asus-kbd-backlight off
+# sudo asus-kbd-backlight off
 startx

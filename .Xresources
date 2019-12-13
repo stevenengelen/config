@@ -1,7 +1,5 @@
 XTerm*termname: xterm-256color
 XTerm*locale: true
-! XTerm*faceName: Terminus:size=10
-! XTerm*faceName: DejaVu Sans Mono:size=10
 XTerm*faceName: DejaVu Sans Mono:size=12
 XTerm*foreground: gray75
 XTerm*background: gray10
